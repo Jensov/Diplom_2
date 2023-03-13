@@ -13,4 +13,8 @@ public class UserGenerator {
     public static String generateEmail() {
         return String.format(faker.name().username() + "@yandex.ru");
     }
+
+    public static String generatePassword() {
+        return String.format(faker.animal().name());
+    }
 }

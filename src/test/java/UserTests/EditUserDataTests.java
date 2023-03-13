@@ -23,12 +23,12 @@ public class EditUserDataTests extends BaseTest {
         UserResponse userResponse = response.as(UserResponse.class);
         this.userResponse = userResponse;
 
-        User userEmail = new User(UserGenerator.generateEmail(), user.getPassword(), user.getName());
-        UserClient.patchUserWithToken(userResponse, userEmail)
+        user.setEmail(UserGenerator.generateEmail());
+        UserClient.patchUserWithToken(userResponse, user)
                 .then()
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))
-                .body("user.email", equalTo(userEmail.getEmail()));
+                .body("user.email", equalTo(user.getEmail()));
     }
 
     @Test

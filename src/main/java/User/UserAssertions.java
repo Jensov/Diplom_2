@@ -36,4 +36,17 @@ public class UserAssertions {
                 .body("success", equalTo(false))
                 .body("message", equalTo("You should be authorised"));
     }
+
+    public void loggedInSuccessfully(Response response) {
+        response.then().assertThat()
+                .statusCode(SC_OK)
+                .body("success", equalTo(true));
+    }
+
+    public void emailOrPasswordAreIncorrect(Response response) {
+        response.then().assertThat()
+                .statusCode(SC_UNAUTHORIZED)
+                .body("success", equalTo(false))
+                .body("message", equalTo("email or password are incorrect"));
+    }
 }
